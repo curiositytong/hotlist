@@ -1,0 +1,13 @@
+.b-header {
+  border-bottom: 1px solid $border-color;
+
+  .navbar-logo {
+    font-size: 1.5rem;
+    color: $primary;
+    padding: 0.5rem 1rem;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}

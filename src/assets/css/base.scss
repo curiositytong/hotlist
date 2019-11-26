@@ -1,0 +1,27 @@
+html {
+  height: 100%;
+}
+
+body {
+  font-size: 14px;
+  background-color: $light;
+  height: auto;
+  min-height: 100%;
+}
+
+.has-navbar-fixed-top {
+  padding-top: 52px;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  padding: 1rem 0;
+
+  @media screen and (max-width: 1024px) {
+    padding: 1rem 0.75rem;
+  }
+}

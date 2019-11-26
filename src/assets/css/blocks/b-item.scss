@@ -1,0 +1,40 @@
+.b-item {
+  display: flex;
+
+  .item-no {
+    display: inline;
+    padding-right: 0.5rem;
+    color: $grey;
+  }
+
+  .item-container {
+    flex: 1;
+
+    a {
+      &:link {
+        color: $black;
+      }
+
+      &:visited {
+        color: $grey;
+      }
+
+      &:hover {
+        color: $black;
+      }
+    }
+
+    .tag {
+      cursor: pointer;
+    }
+
+    .item-content {
+      padding: 0.2rem;
+
+      .last {
+        float: right;
+        color: $grey;
+      }
+    }
+  }
+}
