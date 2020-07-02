@@ -13,6 +13,10 @@ body {
   padding-top: 52px;
 }
 
+.list {
+  box-shadow: none;
+}
+
 .container {
   max-width: 960px;
   margin: 0 auto;
@@ -24,4 +28,10 @@ body {
   @media screen and (max-width: 1024px) {
     padding: 1rem 0.75rem;
   }
+}
+
+.items-header {
+  position: sticky;
+  top: 0;
+  background-color: white;
 }

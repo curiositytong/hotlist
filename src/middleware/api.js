@@ -10,27 +10,22 @@ const callApi = (endpoint, request) => {
 
   const requestWithHeaders = {
     headers: {
-      ...jsonHeaders
+      ...jsonHeaders,
     },
-    ...request
+    ...request,
   };
 
-  return fetch(API_ROOT + endpoint, requestWithHeaders).then(response =>
-    response.json().then(json => {
+  return fetch(API_ROOT + endpoint, requestWithHeaders).then((response) =>
+    response.json().then((json) => {
       if (!response.ok) {
         return Promise.reject(json);
       }
-
-      if (json.code === 0) {
-        return json.data;
-      } else {
-        return Promise.reject(json);
-      }
+      return json;
     })
   );
 };
 
-export default () => next => action => {
+export default () => (next) => (action) => {
   const callAPI = action[actionTypes.CALL_API];
   if (typeof callAPI == 'undefined') {
     return next(action);
@@ -44,11 +39,11 @@ export default () => next => action => {
   if (!Array.isArray(types) || types.length !== 3) {
     throw new Error('Expected an array of three action types.');
   }
-  if (!types.every(type => typeof type === 'string')) {
+  if (!types.every((type) => typeof type === 'string')) {
     throw new Error('Expected action types to be strings.');
   }
 
-  const actionWith = data => {
+  const actionWith = (data) => {
     const finalAction = Object.assign({}, action, data);
     delete finalAction[actionTypes.CALL_API];
     return finalAction;
@@ -58,18 +53,18 @@ export default () => next => action => {
   next(actionWith({ type: requestType }));
 
   return callApi(endpoint, request).then(
-    response =>
+    (response) =>
       next(
         actionWith({
           payload: response,
-          type: successType
+          type: successType,
         })
       ),
-    error =>
+    (error) =>
       next(
         actionWith({
           type: failureType,
-          errMsg: error.message || 'Something bad happened'
+          errMsg: error.message || 'Something bad happened',
         })
       )
   );

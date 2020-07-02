@@ -1,37 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ItemsContainer from '../ItemsContainer';
-import { setSiteId } from '../../actions/sites';
+import { setSiteSlug } from '../../actions/sites';
 import { fetchItems } from '../../actions/items';
-import SEO from '../../components/SEO';
 
 class IndexPage extends Component {
   componentDidMount() {
-    const { siteId, selectedSites, setSiteId, fetchItems } = this.props;
+    const { slug, selectedSites, setSiteSlug, fetchItems } = this.props;
 
     if (
       selectedSites.length > 0 &&
-      selectedSites.map(site => site.id).indexOf(siteId) < 0
+      selectedSites.map((site) => site.slug).indexOf(slug) < 0
     ) {
       console.log(selectedSites);
-      setSiteId(selectedSites[0].id);
-      fetchItems(selectedSites[0].id);
+      setSiteSlug(selectedSites[0].slug);
+      fetchItems(selectedSites[0].slug);
     }
   }
 
   render() {
     return (
-      <div className="wrapper">
-        <SEO title="首页" />
+      <React.Fragment>
         <ItemsContainer />
-      </div>
+      </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  siteId: state.sites.siteId,
-  selectedSites: state.sites.selectedSites
+const mapStateToProps = (state) => ({
+  slug: state.sites.slug,
+  selectedSites: state.sites.selectedSites,
 });
 
-export default connect(mapStateToProps, { setSiteId, fetchItems })(IndexPage);
+export default connect(mapStateToProps, { setSiteSlug, fetchItems })(IndexPage);

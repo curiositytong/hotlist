@@ -2,17 +2,17 @@ import types from '../constants/actionTypes';
 
 const initialState = {
   isFetching: false,
-  siteId: null,
+  slug: null,
   data: [],
   selectedSites: []
 };
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case types.SET_SITE_ID:
+    case types.SET_SITE_SLUG:
       return {
         ...state,
-        siteId: action.payload
+        slug: action.payload
       };
     case types.SET_SELECTED_SITES:
       return {

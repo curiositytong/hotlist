@@ -4,17 +4,21 @@ import logo from '../assets/svg/logo.svg';
 
 class Header extends Component {
   state = {
-    isMenuActive: false
+    isMenuActive: false,
   };
 
   render() {
     const { isMenuActive } = this.state;
 
     return (
-      <div className="navbar is-fixed-top b-header">
+      <div className="navbar b-header">
         <div className="container">
           <div className="navbar-brand">
-            <Link className="navbar-item navbar-logo" to="/">
+            <Link
+              className="navbar-item navbar-logo"
+              to="/"
+              onClick={() => window.location.reload()}
+            >
               <img src={logo} alt="logo" width="112" height="28" />
             </Link>
             <div

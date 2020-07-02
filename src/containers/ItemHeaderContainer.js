@@ -1,38 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ItemHeader from '../components/ItemHeader';
-import { setSiteId } from '../actions/sites';
+import { setSiteSlug } from '../actions/sites';
 import { fetchItems } from '../actions/items';
 
 class ItemHeaderContainer extends Component {
-  handleSetSiteId = siteId => {
-    const { setSiteId, fetchItems } = this.props;
+  handleSetSiteSlug = slug => {
+    const { setSiteSlug, fetchItems } = this.props;
 
-    setSiteId(siteId);
-    fetchItems(siteId);
+    setSiteSlug(slug);
+    fetchItems(slug);
   };
 
   render() {
-    const { siteId, sites } = this.props;
+    const { slug, sites } = this.props;
 
     return (
       <ItemHeader
-        siteId={siteId}
+        siteSlug={slug}
         sites={sites}
-        onSetSiteId={this.handleSetSiteId}
+        onSetSiteSlug={this.handleSetSiteSlug}
       />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  siteId: state.sites.siteId,
+  slug: state.sites.slug,
   sites:
     state.sites.selectedSites.length > 0
       ? state.sites.selectedSites
       : state.sites.data
 });
 
-export default connect(mapStateToProps, { setSiteId, fetchItems })(
+export default connect(mapStateToProps, { setSiteSlug, fetchItems })(
   ItemHeaderContainer
 );

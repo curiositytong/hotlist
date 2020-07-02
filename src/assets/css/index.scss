@@ -10,9 +10,11 @@
 @import 'node_modules/bulma/sass/components/navbar.sass';
 @import 'node_modules/bulma/sass/components/list.sass';
 @import 'node_modules/bulma/sass/components/breadcrumb.sass';
+@import 'node_modules/bulma/sass/components/message.sass';
 @import 'node_modules/bulma/sass/form/_all.sass';
 
 @import './base';
+@import './blocks/b-message';
 @import './blocks/b-header';
 @import './blocks/b-item';
 @import './blocks/b-sites';

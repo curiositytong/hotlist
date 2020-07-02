@@ -4,19 +4,19 @@ import { Switch, Route } from 'react-router';
 import routes from './routes';
 import Loading from './components/Loading';
 import Header from './components/Header';
-import { setSiteId, fetchSites } from './actions/sites';
+import { setSiteSlug, fetchSites } from './actions/sites';
 import { fetchItems } from './actions/items';
 
 class App extends Component {
   componentDidMount() {
-    const { siteId, setSiteId, fetchSites, fetchItems } = this.props;
+    const { slug, setSiteSlug, fetchSites, fetchItems } = this.props;
 
-    fetchSites().then(resp => {
-      if (!siteId) {
-        setSiteId(resp.payload[0].id);
-        fetchItems(resp.payload[0].id);
+    fetchSites().then((resp) => {
+      if (!slug) {
+        setSiteSlug(resp.payload[0].slug);
+        fetchItems(resp.payload[0].slug);
       } else {
-        fetchItems(siteId);
+        fetchItems(slug);
       }
     });
   }
@@ -24,9 +24,9 @@ class App extends Component {
   render() {
     return (
       <Suspense fallback={<Loading />}>
-        <div className="has-navbar-fixed-top">
-          <Header />
-          <div className="container">
+        <Header />
+        <div className="container">
+          <div className="wrapper">
             <Switch>
               {routes.map((route, i) => (
                 <Route
@@ -44,10 +44,12 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  siteId: state.sites.siteId
+const mapStateToProps = (state) => ({
+  slug: state.sites.slug,
 });
 
-export default connect(mapStateToProps, { setSiteId, fetchSites, fetchItems })(
-  App
-);
+export default connect(mapStateToProps, {
+  setSiteSlug,
+  fetchSites,
+  fetchItems,
+})(App);
